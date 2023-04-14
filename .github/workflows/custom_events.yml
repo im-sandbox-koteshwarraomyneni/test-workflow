@@ -1,0 +1,20 @@
+on:
+  repository_dispatch:
+    types: [my_event_type]
+
+inputs:
+  input1:
+    description: 'Description of input1'
+    required: true
+  input2:
+    description: 'Description of input2'
+    required: true
+
+jobs:
+  my_job:
+    runs-on: ubuntu-latest
+    steps:
+    - name: My first step
+      run: echo "Input 1 is ${{ inputs.input1 }}"
+    - name: My second step
+      run: echo "Input 2 is ${{ inputs.input2 }}"
