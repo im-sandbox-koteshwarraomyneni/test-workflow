@@ -1,0 +1,58 @@
+name: Code Quality Check
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  blame-check:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+
+    - name: Install dependencies
+      run: |
+        npm install
+
+    - name: Run blame check
+      run: |
+        npm run blame-check
+
+    - name: Send blame email
+      uses: dawidd6/action-send-mail@v3
+      if: ${{ failure() }}
+      with:
+        server_address: smtp.gmail.com
+        server_port: 465
+        username: ${{ secrets.EMAIL_USERNAME }}
+        password: ${{ secrets.EMAIL_PASSWORD }}
+        to: ${{ github.event.head_commit.author.email }}
+        subject: Code Quality Check Failed
+        body: |
+          Hi ${github.event.head_commit.author.name},
+
+          We ran a code quality check on your latest commit and found some issues. Please review the issues and make the necessary changes.
+
+          Thanks,
+          Code Quality Check
+
+    - name: Create ticket
+      uses: peter-evans/create-issue-from-file@v2
+      if: ${{ failure() }}
+      with:
+        title: Code Quality Check Failed
+        body: |
+          Hi,
+
+          We ran a code quality check on the latest commit and found some issues. Please review the issues and make the necessary changes.
+
+          Thanks,
+          Code Quality Check
+        assignees: ${{ github.event.head_commit.author.name }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
