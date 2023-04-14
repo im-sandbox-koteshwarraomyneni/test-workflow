@@ -8,11 +8,11 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    
+
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-    
+    # - name: Checkout repository
+    #   uses: actions/checkout@v2
+
     - name: Run script using bash
       shell: bash
       run: |
@@ -20,7 +20,7 @@ jobs:
         echo "Running some commands"
         ls -al
         echo "Done running bash script"
-    
+
     - name: Run script using PowerShell
       shell: pwsh
       run: |
@@ -28,7 +28,7 @@ jobs:
         Write-Host "Running some commands"
         Get-ChildItem
         Write-Host "Done running PowerShell script"
-    
+
     - name: Run script using Python
       shell: python
       run: |
