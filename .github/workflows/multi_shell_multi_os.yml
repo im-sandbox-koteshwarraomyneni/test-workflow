@@ -1,0 +1,46 @@
+name: Multi-Shell & OS Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    
+    - name: Run script using bash
+      if: matrix.os == 'ubuntu-latest'
+      shell: bash
+      run: |
+        echo "This is a bash script on Ubuntu"
+        echo "Running some commands"
+        ls -al
+        echo "Done running bash script"
+    
+    - name: Run script using PowerShell
+      if: matrix.os == 'windows-latest'
+      shell: pwsh
+      run: |
+        Write-Host "This is a PowerShell script on Windows"
+        Write-Host "Running some commands"
+        Get-ChildItem
+        Write-Host "Done running PowerShell script"
+    
+    - name: Run script using Python
+      if: matrix.os == 'macos-latest'
+      shell: python
+      run: |
+        print("This is a Python script on macOS")
+        print("Running some commands")
+        import os
+        print(os.listdir("."))
+        print("Done running Python script")
