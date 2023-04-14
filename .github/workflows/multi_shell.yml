@@ -1,0 +1,39 @@
+name: Multi-Shell Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    
+    - name: Run script using bash
+      shell: bash
+      run: |
+        echo "This is a bash script"
+        echo "Running some commands"
+        ls -al
+        echo "Done running bash script"
+    
+    - name: Run script using PowerShell
+      shell: pwsh
+      run: |
+        Write-Host "This is a PowerShell script"
+        Write-Host "Running some commands"
+        Get-ChildItem
+        Write-Host "Done running PowerShell script"
+    
+    - name: Run script using Python
+      shell: python
+      run: |
+        print("This is a Python script")
+        print("Running some commands")
+        import os
+        print(os.listdir("."))
+        print("Done running Python script")
