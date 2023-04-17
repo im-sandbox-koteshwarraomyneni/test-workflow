@@ -1,0 +1,23 @@
+name: My Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  my_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        
+      - name: Print GitHub environment variables
+        run: |
+          echo "All GitHub environment variables:"
+          printenv | grep GITHUB_
+          
+      - name: Print all environment variables
+        run: |
+          echo "All environment variables:"
+          env
