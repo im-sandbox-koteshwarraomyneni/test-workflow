@@ -9,10 +9,10 @@ inputs:
 output:
   time:
     description: "The Greeting Time"
-ru
-jobs:
-  testing-actions:
-    runs-on: ubuntu-latest
+runs:
+  using: "node16"
+  main: "dist/index.js"
+
     steps:
       - name: Say Hello
         id: hello
