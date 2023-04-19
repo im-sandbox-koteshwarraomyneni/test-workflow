@@ -3,7 +3,7 @@ author: koteshwar
 description: create issues
 inputs:
   token:
-    description: "Github token"
+    description: "Github token "
     required: true
   title:
     description: "issue description"
