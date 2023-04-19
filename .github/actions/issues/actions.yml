@@ -5,12 +5,12 @@ inputs:
   token:
     description: "Github token"
     required: true
-  titlet:
+  title:
     description: "issue description"
     required: true
   body:
     description: "issue body"
-  assignes:
+  assignees:
     description: "issue assignes"
 output:
   issues:
