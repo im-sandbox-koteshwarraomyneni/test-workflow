@@ -8,16 +8,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
       - uses: ./.github/actions/issues
-        id: issue
+        id: issues
         with:
           token: ${{secrets.GITHUB_TOKEN}}
           title: build issue
           body: Body
           assignees: |
-            koteshwar
-      - run:
-          echo ${{steps.issues.output.issues}}
+            koteshwarraomyneni
+      - run: echo ${{steps.issues.output.issues}}
 
       - uses: ./.github/actions/hello
         id: hello
