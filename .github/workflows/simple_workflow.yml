@@ -3,23 +3,24 @@ on:
   push:
     branches:
       - main
+
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
-      - name: issues
-        uses: ./.github/actions/issues
-        id: issues
-        with:
-          token: ${{secrets.GITHUB_TOKEN}}
-          title: build issue
-          body: Body
-          assignees: |
-            koteshwarraomyneni
+    - name: issues
+      uses: ./.github/actions/issues
+      id: issues
+      with:
+        token: ${{secrets.GITHUB_TOKEN}}
+        title: build issue
+        body: Body
+        assignees: |
+          koteshwarraomyneni
     - run: echo ${{steps.issues.output.issues}}
 
     - uses: ./.github/actions/hello
