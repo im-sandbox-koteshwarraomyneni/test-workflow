@@ -1,7 +1,15 @@
 name: Say Hello
-
-on: [push]
-
+author: koteshwar
+description: output greetings
+inputs:
+  who-to-greet:
+    description: "who to greet"
+    required: true
+    default: koteshwar
+output:
+  time:
+    description: "The Greeting Time"
+ru
 jobs:
   testing-actions:
     runs-on: ubuntu-latest
