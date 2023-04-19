@@ -3,26 +3,26 @@ on:
   push:
     branches:
       - main
-  jobs:
-    build:
+jobs:
+  build:
       runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+  steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
-      - uses: ./.github/actions/issues
-        id: issues
-        with:
-          token: ${{secrets.GITHUB_TOKEN}}
-          title: build issue
-          body: Body
-          assignees: |
-            koteshwarraomyneni
-      - run: echo ${{steps.issues.output.issues}}
+    - uses: ./.github/actions/issues
+      id: issues
+      with:
+        token: ${{secrets.GITHUB_TOKEN}}
+        title: build issue
+        body: Body
+        assignees: |
+          koteshwarraomyneni
+    - run: echo ${{steps.issues.output.issues}}
 
-      - uses: ./.github/actions/hello
-        id: hello
-        with:
-          who-to-greet: "world"
-      - run: |
-          echo "Time:${{steps.hello.outputs.time}}"
+    - uses: ./.github/actions/hello
+      id: hello
+      with:
+        who-to-greet: "world"
+    - run: |
+        echo "Time:${{steps.hello.outputs.time}}"
