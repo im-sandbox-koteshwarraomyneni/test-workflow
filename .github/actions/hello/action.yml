@@ -12,12 +12,3 @@ output:
 runs:
   using: "node16"
   main: "dist/index.js"
-
-    steps:
-      - name: Say Hello
-        id: hello
-        uses: ./.github/actions/hello/index.js
-        with:
-          name: ${{ github.actor }}
-      - name: Print Greeting
-        run: echo "The greeting is ${{ steps.hello.outputs.message }}"
