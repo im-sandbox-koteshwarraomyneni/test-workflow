@@ -1,0 +1,15 @@
+name: Say Hello
+
+on: [push]
+
+jobs:
+  testing-actions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Say Hello
+        id: hello
+        uses: ./.github/actions/hello/index.js
+        with:
+          name: ${{ github.actor }}
+      - name: Print Greeting
+        run: echo "The greeting is ${{ steps.hello.outputs.message }}"
