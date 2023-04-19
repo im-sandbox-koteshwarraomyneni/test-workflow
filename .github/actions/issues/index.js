@@ -1,6 +1,6 @@
 const core = require("@actions/core");
 const github = require("@actions/github");
-const { async } = require("rxjs/internal/scheduler/async");
+
 async function run() {
   try {
     const token = core.getInput("token");
