@@ -10102,6 +10102,8 @@ async function run() {
   }
 }
 
+run();
+
 
 /***/ }),
 
