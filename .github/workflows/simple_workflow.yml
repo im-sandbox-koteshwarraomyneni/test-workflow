@@ -20,8 +20,8 @@ jobs:
           echo ${{steps.issues.output.issues}}
 
       - uses: ./.github/actions/hello
-          id: hello
-          with:
-            who-to-greet: "world"
+        id: hello
+        with:
+          who-to-greet: "world"
       - run: |
           echo "Time:${{steps.hello.outputs.time}}"
