@@ -16,5 +16,5 @@ output:
   issues:
     description: "create issue"
 runs:
-  using: "node16"
+  using: "node12"
   main: "dist/index.js"
