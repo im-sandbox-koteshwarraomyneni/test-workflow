@@ -1,0 +1,20 @@
+name: create issues
+author: koteshwar
+description: create issues
+inputs:
+  token:
+    description: "Github token"
+    required: true
+  titlet:
+    description: "issue description"
+    required: true
+  body:
+    description: "issue body"
+  assignes:
+    description: "issue assignes"
+output:
+  issues:
+    description: "create issue"
+runs:
+  using: "node16"
+  main: "dist/index.js"

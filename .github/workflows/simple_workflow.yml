@@ -6,15 +6,22 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+      - uses: ./.github/actions/issues
+        id: issue
+        with:
+          token: &{{secrets.GITHUB_TOKEN}}
+          title: build issue
+          body: Body
+          assignees: |
+            koteshwar
+      - run:
+          echo ${{steps.issues.output.issues}}
 
-    - name: custome actions
-      uses: ./.github/actions/hello
-      id: hello
-      with:
-        who-to-greet: "world"
-    - run: |
-        echo "Time:${{steps.hello.outputs.time}}"
+      - uses: ./.github/actions/hello
+          id: hello
+          with:
+            who-to-greet: "world"
+      - run: |
+          echo "Time:${{steps.hello.outputs.time}}"
