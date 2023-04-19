@@ -11,8 +11,14 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
+
+    - name: hello world actions
+      uses: ./.github/actions/hello
+      id: hello
       with:
-        node-version: '16'
+        who-to-greet: "world"
+    - run: |
+        echo "Time:${{steps.hello.outputs.time}}"
 
     - name: issues
       uses: ./.github/actions/issues
@@ -25,9 +31,4 @@ jobs:
           koteshwarraomyneni
     - run: echo ${{steps.issues.output.issues}}
 
-    - uses: ./.github/actions/hello
-      id: hello
-      with:
-        who-to-greet: "world"
-    - run: |
-        echo "Time:${{steps.hello.outputs.time}}"
+
