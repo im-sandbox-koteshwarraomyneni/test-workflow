@@ -11,7 +11,7 @@ jobs:
       - uses: ./.github/actions/issues
         id: issue
         with:
-          token: &{{secrets.GITHUB_TOKEN}}
+          token: ${{secrets.GITHUB_TOKEN}}
           title: build issue
           body: Body
           assignees: |
