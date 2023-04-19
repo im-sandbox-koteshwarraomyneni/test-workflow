@@ -14,7 +14,7 @@ try {
     assignees: assignees ? assignees.split('/n'): undefined
   });
 
-  core.setOutput('issues', response);
+  core.setOutput('issues', JSON.stringify(response.data));
 } catch (error) {
   core.setFailed(error.message);
 }
