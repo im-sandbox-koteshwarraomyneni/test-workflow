@@ -9,33 +9,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Setup Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14.x'
-    - name: Install dependencies
-      run: npm install @actions/github
+      - uses: actions/checkout@v2
+      - uses: ./.github/actions/hello
+        id: hello
+        with:
+          who-to-greet: "world"
+      - run: |
+          echo "Time:${{steps.hello.outputs.time}}"
 
-    - name: Checkout repository
-      uses: actions/checkout@v2
-
-    - name: hello world actions
-      uses: ./.github/actions/hello
-      id: hello
-      with:
-        who-to-greet: "world"
-    - run: |
-        echo "Time:${{steps.hello.outputs.time}}"
-
-    - name: issues
-      uses: ./.github/actions/issues
-      id: issues
-      with:
+      - uses: ./.github/actions/issues
+        id: issues
+        with:
         token: ${{secrets.GITHUB_TOKEN}}
         title: build issue
         body: Body
         assignees: |
           koteshwarraomyneni
-    - run: echo ${{steps.issues.output.issues}}
+      - run: echo ${{steps.issues.output.issues}}
 
 
