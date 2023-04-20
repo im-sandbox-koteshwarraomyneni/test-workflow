@@ -20,11 +20,11 @@ jobs:
       - uses: ./.github/actions/issues
         id: issues
         with:
-        token: ${{secrets.GITHUB_TOKEN}}
-        title: build issue
-        body: Body
-        assignees: |
-          koteshwarraomyneni
+          token: ${{ secrets.GITHUB_TOKEN }}
+          title: build issue
+          body: Body
+          assignees: |
+            koteshwarraomyneni
       - run: echo ${{steps.issues.output.issues}}
 
 
