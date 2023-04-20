@@ -1,7 +1,7 @@
 name: create issues
 author: koteshwar
 description: create issues
-input:
+inputs:
   token:
     description: "Github token "
     required: true
@@ -12,7 +12,7 @@ input:
     description: "issue body"
   assignees:
     description: "issue assignes"
-output:
+outputs:
   issues:
     description: "create issue"
 runs:
