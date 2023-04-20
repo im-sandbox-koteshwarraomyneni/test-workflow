@@ -9,16 +9,14 @@ async function run() {
     const assignees = core.getInput("assignees");
 
     const octokit = github.getOctokit(token);
-    console.log(octokit); // should print the Octokit object
-
     const response = await octokit.issues.create({
       ...github.context.repo,
       title,
       body,
-      assignees: assignees ? assignees.split("/n") : undefined,
+      assignees: assignees ? assignees.split("\n") : undefined,
     });
 
-    core.setOutput("issues", JSON.stringify(response.data));
+    core.setOutput("issue", JSON.stringify(response.data));
   } catch (error) {
     core.setFailed(error.message);
   }
