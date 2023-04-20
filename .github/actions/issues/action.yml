@@ -1,7 +1,7 @@
 name: create issues
 author: koteshwar
 description: create issues
-inputs:
+input:
   token:
     description: "Github token "
     required: true
